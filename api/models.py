@@ -74,11 +74,15 @@ class Produit(models.Model):
     id = models.BigAutoField(primary_key=True)
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     nom_produit = models.CharField(max_length=40)
+    num_serie=models.CharField(max_length=60)
     prix_achat = models.IntegerField(default=0)
-    dateexpiration = models.DateField
+    dateexpiration = models.DateField()
 
     def __str__(self):
         return f"{self.nom_produit} {self.prix_achat} {self.dateexpiration} {self.stock.nom_stock} "
+# pour gérer les répétition des noms de produits
+    class Meta:
+        unique_together="nom_produit", "num_serie"
 
 
 class Mutuelle(models.Model):
