@@ -6,14 +6,21 @@ class ProvinceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Province
         fields = "__all__"
+        # exclude=["user"]
 
 
 class CommuneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Commune
         fields = "__all__"
+        # exclude=["user"]
 
-
+    # def to_representation(self, obj):
+    #     serializer=super().to_representation(obj)
+    #     serializer["user"]=obj.user.username
+    #     serializer["province"]=str(obj.province)
+    #     return serializer
+    
 class ZoneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Zone
@@ -86,4 +93,4 @@ class AgenceSerializer(serializers.ModelSerializer):
 class DetteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dette
-        fields = "__all__"
+        field = "__all__"
